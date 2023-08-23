@@ -1,7 +1,7 @@
 from collections import UserDict
 from datetime import datetime, date, timedelta
 from dateparser import parse
-import json
+import pickle
 
 
 class Field:
@@ -75,12 +75,12 @@ class AddressBook(UserDict):
                     break
 
     def dump(self):
-        with open('AdressBook.json', 'w', encoding='utf-8') as file:
-            json.dump(self.data, file, ensure_ascii=False)
+        with open('AdressBook.json', 'wb') as file:
+            pickle.dump(self.data, file)
 
     def load(self):
-        with open('AdressBook.json', 'r', encoding='utf-8') as file:
-            self.store = json.load(file)
+        with open('AdressBook.json', 'rb') as file:
+            self.store = pickle.load(file)
 
     def search(self, search_str: str):
         result = []
@@ -88,8 +88,6 @@ class AddressBook(UserDict):
             if search_str in record:
                 result.append(record_id)
         return result
-
-
 
 
 class Record:
@@ -167,3 +165,5 @@ if __name__ == "__main__":
     print(rec_2.days_to_birthday())
     print(rec_3.days_to_birthday())
     print(rec_4.days_to_birthday())
+
+    ab.dump()
