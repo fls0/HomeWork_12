@@ -75,11 +75,11 @@ class AddressBook(UserDict):
                     break
 
     def dump(self):
-        with open('AdressBook', 'w', encoding='utf-8') as file:
+        with open('AdressBook.json', 'w', encoding='utf-8') as file:
             json.dump(self.data, file, ensure_ascii=False)
 
     def load(self):
-        with open('AdressBook', 'r', encoding='utf-8') as file:
+        with open('AdressBook.json', 'r', encoding='utf-8') as file:
             self.store = json.load(file)
 
     def search(self, search_str: str):
