@@ -75,16 +75,16 @@ class AddressBook(UserDict):
                     break
 
     def dump(self):
-        with open('AdressBook.json', 'wb') as file:
+        with open('AdressBook', 'wb') as file:
             pickle.dump(self.data, file)
 
     def load(self):
-        with open('AdressBook.json', 'rb') as file:
+        with open('AdressBook', 'rb') as file:
             self.store = pickle.load(file)
 
     def search(self, search_str: str):
         result = []
-        for record_id, record in self.records.items():
+        for record_id, record in self.data.items():
             if search_str in record:
                 result.append(record_id)
         return result
@@ -167,3 +167,5 @@ if __name__ == "__main__":
     print(rec_4.days_to_birthday())
 
     ab.dump()
+    ab.load()
+    
