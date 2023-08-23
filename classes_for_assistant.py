@@ -75,11 +75,11 @@ class AddressBook(UserDict):
                     break
 
     def dump(self):
-        with open('AdressBook', 'wb') as file:
+        with open('AdressBook.bin', 'wb') as file:
             pickle.dump(self.data, file)
 
     def load(self):
-        with open('AdressBook', 'rb') as file:
+        with open('AdressBook.bin', 'rb') as file:
             self.store = pickle.load(file)
 
     def search(self, search_str: str):
